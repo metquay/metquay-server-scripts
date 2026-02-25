@@ -21,7 +21,7 @@
 ### Before Running
 ```bash
 # Always review scripts first
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/server-scripts/main/SCRIPT_PATH.sh | less
+curl -sSL https://raw.githubusercontent.com/metquay/metquay-server-scripts/main/SCRIPT_PATH.sh | less
 ```
 
 ### During Execution
