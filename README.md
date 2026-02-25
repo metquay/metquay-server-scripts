@@ -24,10 +24,10 @@ Each script is designed to be run directly from GitHub:
 
 ```bash
 # Run Docker/Portainer installer
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/server-scripts/main/docker/install-docker-and-portainer.sh | bash
+curl -sSL https://raw.githubusercontent.com/metquay/metquay-server-scripts/main/docker/install-docker-and-portainer.sh | bash
 
 # Run SSL installer
-curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/server-scripts/main/ssl/install-certbot-and-update-ssl.sh | bash
+curl -sSL https://raw.githubusercontent.com/metquay/metquay-server-scripts/main/ssl/install-certbot-and-update-ssl.sh | bash
 ```
 
 ## 🔒 Security Notes
