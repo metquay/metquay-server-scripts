@@ -42,7 +42,7 @@ echo ""
 
 # Domain (required)
 while true; do
-    read -p "$(echo -e ${BLUE}"Enter your domain name (e.g., example.com): ${NC}")" DOMAIN
+    read -p "$(echo -e ${BLUE}"Enter your domain name (e.g., example.com): ${NC}")" DOMAIN < /dev/tty
     if [ -z "$DOMAIN" ]; then
         echo -e "${RED}❌ Domain cannot be empty. Please try again.${NC}"
     elif [[ ! "$DOMAIN" =~ ^[a-zA-Z0-9][a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$ ]]; then
@@ -56,7 +56,7 @@ echo ""
 
 # Email for Let's Encrypt (required)
 while true; do
-    read -p "$(echo -e ${BLUE}"Enter your email address (for Let's Encrypt notifications): ${NC}")" EMAIL
+    read -p "$(echo -e ${BLUE}"Enter your email address (for Let's Encrypt notifications): ${NC}")" EMAIL < /dev/tty
     if [ -z "$EMAIL" ]; then
         echo -e "${RED}❌ Email cannot be empty. Let's Encrypt requires a valid email.${NC}"
     elif [[ ! "$EMAIL" =~ ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$ ]]; then
@@ -70,9 +70,9 @@ echo ""
 
 # Keystore password (required - will be masked)
 while true; do
-    read -sp "$(echo -e ${BLUE}"Enter keystore/PKCS12 password: ${NC}")" P12_PASSWORD
+    read -sp "$(echo -e ${BLUE}"Enter keystore/PKCS12 password: ${NC}")" P12_PASSWORD < /dev/tty
     echo ""
-    read -sp "$(echo -e ${BLUE}"Confirm keystore/PKCS12 password: ${NC}")" P12_PASSWORD_CONFIRM
+    read -sp "$(echo -e ${BLUE}"Confirm keystore/PKCS12 password: ${NC}")" P12_PASSWORD_CONFIRM < /dev/tty
     echo ""
     
     if [ -z "$P12_PASSWORD" ]; then
@@ -88,7 +88,7 @@ echo ""
 
 # Keystore path (with default)
 DEFAULT_KEYSTORE="/var/lib/docker/volumes/metquay-tomcat-conf/_data/keystore"
-read -p "$(echo -e ${BLUE}"Enter keystore path [default: $DEFAULT_KEYSTORE]: ${NC}")" KEYSTORE_PATH
+read -p "$(echo -e ${BLUE}"Enter keystore path [default: $DEFAULT_KEYSTORE]: ${NC}")" KEYSTORE_PATH < /dev/tty
 if [ -z "$KEYSTORE_PATH" ]; then
     KEYSTORE_PATH="$DEFAULT_KEYSTORE"
 fi
@@ -97,7 +97,7 @@ echo ""
 
 # Alias name (with default)
 DEFAULT_ALIAS="$DOMAIN"
-read -p "$(echo -e ${BLUE}"Enter certificate alias name [default: $DEFAULT_ALIAS]: ${NC}")" ALIAS_NAME
+read -p "$(echo -e ${BLUE}"Enter certificate alias name [default: $DEFAULT_ALIAS]: ${NC}")" ALIAS_NAME < /dev/tty
 if [ -z "$ALIAS_NAME" ]; then
     ALIAS_NAME="$DEFAULT_ALIAS"
 fi
@@ -120,7 +120,7 @@ echo -e "   • Port 80 must be available for certificate issuance/renewal"
 echo -e "   • Existing keystore will be backed up"
 echo -e "   • The password you entered will be used for PKCS12 and keystore"
 echo ""
-read -p "$(echo -e ${YELLOW}"Do you want to continue? (y/N): ${NC}")" -n 1 -r
+read -p "$(echo -e ${YELLOW}"Do you want to continue? (y/N): ${NC}")" -n 1 -r < /dev/tty
 echo
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     echo -e "${RED}❌ Installation cancelled by user.${NC}"
@@ -293,7 +293,7 @@ check_port_80() {
         echo -e "   1. Stop the service using port 80 temporarily"
         echo -e "   2. Use webroot mode instead (requires web server configuration)"
         echo ""
-        read -p "$(echo -e ${YELLOW}"Continue anyway? (certbot may fail) (y/N): ${NC}")" -n 1 -r
+        read -p "$(echo -e ${YELLOW}"Continue anyway? (certbot may fail) (y/N): ${NC}")" -n 1 -r < /dev/tty
         echo
         if [[ ! $REPLY =~ ^[Yy]$ ]]; then
             echo -e "${RED}❌ Installation cancelled.${NC}"
