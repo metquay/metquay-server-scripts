@@ -48,7 +48,7 @@ echo -e "   • Ports ${CYAN}8000${NC} and ${CYAN}9000${NC} will be used by Port
 echo -e "   • This script does NOT open ports in your firewall"
 echo -e "   • Configure firewall manually if external access is needed"
 echo ""
-read -p "$(echo -e ${YELLOW}"Do you want to continue? (y/N): ${NC}")" -n 1 -r
+read -p "$(echo -e ${YELLOW}"Do you want to continue? (y/N): ${NC}")" -n 1 -r < /dev/tty
 echo
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     echo -e "${RED}❌ Installation cancelled by user.${NC}"
@@ -216,7 +216,7 @@ fi
 if [ "$PORT_8000_IN_USE" = true ]; then
     echo -e "${YELLOW}⚠️ Port 8000 is already in use. This port is used for Portainer's tunnel server.${NC}"
     echo -e "   Portainer may still function but some features might be limited."
-    read -p "$(echo -e ${YELLOW}"Continue anyway? (y/N): ${NC}")" -n 1 -r
+    read -p "$(echo -e ${YELLOW}"Continue anyway? (y/N): ${NC}")" -n 1 -r < /dev/tty
     echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
         echo -e "${RED}❌ Installation cancelled.${NC}"
@@ -232,7 +232,7 @@ echo ""
 # =====================================================
 if docker ps -a --format '{{.Names}}' | grep -q "^portainer$"; then
     echo -e "${YELLOW}⚠️ Portainer container already exists.${NC}"
-    read -p "$(echo -e ${YELLOW}"Remove existing container and reinstall? (y/N): ${NC}")" -n 1 -r
+    read -p "$(echo -e ${YELLOW}"Remove existing container and reinstall? (y/N): ${NC}")" -n 1 -r < /dev/tty
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo -e "   ${CYAN}Removing existing Portainer container...${NC}"
